@@ -35,7 +35,7 @@ grammar Journal
 
   # Meat + Potatoes
   rule section
-    section_start date "}" whitespace show:show? entry <SectionNode>
+    section_start date "}" whitespace show:show? whitespace? entry <SectionNode>
   end
 
   rule show

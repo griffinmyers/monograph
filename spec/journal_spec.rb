@@ -61,9 +61,17 @@ module Journal
       end
 
       it 'should allow me to register someone and show them only the posts I showed them' do
-        container = @parser.parse("% register: roymuntz password123 \\section{April 3$^{rd}$, 2013} % show: roymuntz \nDear Journal... \\section{April 4$^{th}$, 2013} Fuck Munson...").container
+        container = @parser.parse("% register: roymuntz password123 \\section{April 3$^{rd}$, 2013} % show: roymuntz \n Dear Journal... \\section{April 4$^{th}$, 2013} Fuck Munson...").container
         container.to_h.should == {
           :roymuntz => "<div class='section'><div class='date'>3 April 2013</div><div class='entry'><p>Dear Journal... </p></div></div>"
+        }
+      end
+
+      it 'should allow me to register multiple people and assign multiple, distinct posts to each' do
+        container = @parser.parse("% register: roymuntz password123 %register: etj vibesquad \\section{April 3$^{rd}$, 2013} % show: roymuntz etj \n Dear Journal... \\section{April 4$^{th}$, 2013} Fuck The Dinner Dogs... \\section{April 5$^{th}$, 2013} %show: etj \n Fuck The Munson... \\section{April 6$^{th}$, 2013} %show: roymuntz \n Fuck Ernst...").container
+        container.to_h.should == {
+          :roymuntz => "<div class='section'><div class='date'>3 April 2013</div><div class='entry'><p>Dear Journal... </p></div></div><div class='section'><div class='date'>6 April 2013</div><div class='entry'><p>Fuck Ernst...</p></div></div>",
+          :etj=>"<div class='section'><div class='date'>3 April 2013</div><div class='entry'><p>Dear Journal... </p></div></div><div class='section'><div class='date'>5 April 2013</div><div class='entry'><p>Fuck The Munson... </p></div></div>"
         }
       end
 

@@ -631,7 +631,7 @@ module Journal
     end
 
     def entry
-      elements[5]
+      elements[6]
     end
   end
 
@@ -673,8 +673,17 @@ module Journal
             end
             s0 << r5
             if r5
-              r7 = _nt_entry
+              r8 = _nt_whitespace
+              if r8
+                r7 = r8
+              else
+                r7 = instantiate_node(SyntaxNode,input, index...index)
+              end
               s0 << r7
+              if r7
+                r9 = _nt_entry
+                s0 << r9
+              end
             end
           end
         end

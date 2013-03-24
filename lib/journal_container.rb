@@ -46,16 +46,16 @@ module Journal
 		def initialize(username, password)
 			@username = username
 			@password = password
-			@html = ""
+			@html = []
 		end
 
 		# Naw on some content and swallow that shit deep
 		def chomp!(html)
-			@html += html
+			@html.push(html)
 		end
 
 		def html
-			@html
+			@html.join
 		end
 
 	end
