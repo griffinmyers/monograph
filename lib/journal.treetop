@@ -1,0 +1,88 @@
+require 'treetop'
+require 'journal_nodes'
+
+grammar Journal
+
+  rule document
+    ( whitelist / register / part / chapter / section / whitespace )+ <DocumentNode>
+  end
+
+  rule whitelist
+    "%" spaces "whitelist:" spaces username spaces password  <WhitelistNode>
+  end
+
+  rule register
+    "%" spaces "register:" spaces username spaces password  <RegisterNode>
+  end
+
+  rule username
+    ( !(" " / "\n" ) . )+
+  end
+
+  rule password
+    ( !(" " / "\n" ) . )+
+  end
+
+  # I'm just going to parse and ignore these
+  rule part
+    "\\part{" ( !"}" . )+ "}" <PartNode>
+  end
+
+  # I'm just going to parse and ignore these
+  rule chapter
+    "\\chapter{" ( !"}" . )+ "}" <ChapterNode>
+  end
+
+  # Meat + Potatoes
+  rule section
+    section_start date "}" whitespace show:show? entry <SectionNode>
+  end
+
+  rule show
+    "%" spaces "show:" spaces sequence:(username spaces)+ newline <ShowNode>
+  end
+
+  rule entry
+    ( !section_start . )+ <EntryNode>
+  end
+
+  rule section_start
+    "\\section{"
+  end
+
+  rule date
+    month spaces day spaces "$^{" ( !"}" . )+ "}$," spaces year <DateNode>
+  end
+
+  rule month
+    ( "January" / "February" / "March" / "April" / "May" / "June" / "July" / "August" / "September" / "October" / "November" / "December" ) <MonthNode>
+  end
+
+  # I'll be fucked if it's ever January 100th
+  rule day
+    [0-9] 1..2 <DayNode>
+  end
+
+  # TODO fix for Y10K
+  rule year
+    [0-9] 4..4 <YearNode>
+  end
+
+  # Treetop does not separate lexing from parsing. Must consume all input.
+  rule whitespace
+    ( " " / newline )+ <WhitespaceNode>
+  end
+
+  rule spaces
+    ( " " )*
+  end
+
+  rule eop
+    newline 2..
+  end
+
+  rule newline
+    "\n"
+  end
+
+end
