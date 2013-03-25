@@ -5,6 +5,12 @@ GIT
     hemingway (0.0.2)
       treetop
 
+PATH
+  remote: .
+  specs:
+    journal (0.0.1)
+      treetop
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -27,5 +33,5 @@ PLATFORMS
 
 DEPENDENCIES
   hemingway!
+  journal!
   rspec
-  treetop

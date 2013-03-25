@@ -1,7 +1,7 @@
 require 'fileutils'
 require 'erb'
 
-module Journal
+module Content
 
 	class InvalidUserError < StandardError; end;
 

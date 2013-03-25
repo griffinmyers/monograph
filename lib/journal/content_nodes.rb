@@ -1,7 +1,7 @@
 require 'hemingway'
-require 'journal_container'
+require 'journal/journal_container'
 
-module Journal
+module Content
 
   module DocumentNode
     def container

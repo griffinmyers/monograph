@@ -1,11 +1,11 @@
 require 'spec_helper'
 
-module Journal
+module Content
 
-  describe JournalParser do
+  describe ContentParser do
 
     before do
-      @parser = JournalParser.new
+      @parser = ContentParser.new
     end
 
     describe "#Parser" do

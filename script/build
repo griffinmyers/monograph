@@ -1,8 +1,5 @@
 #!/usr/bin/env ruby
 
-# Adding lib to the LOAD_PATH
-$LOAD_PATH.unshift("#{File.dirname(__FILE__)}/../lib/")
-
 def compile_and_recurse
 
 	# Compile all of the treetop files in the pwd

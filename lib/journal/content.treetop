@@ -1,7 +1,6 @@
-require 'treetop'
-require 'journal_nodes'
+require 'journal/content_nodes'
 
-grammar Journal
+grammar Content
 
   rule document
     ( whitelist / register / part / chapter / section / whitespace )+ <DocumentNode>
