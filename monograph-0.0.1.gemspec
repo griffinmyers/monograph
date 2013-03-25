@@ -5,7 +5,7 @@ require 'journal/version'
 
 Gem::Specification.new do |gem|
   gem.name          = "journal"
-  gem.version       = Journal::VERSION
+  gem.version       = Monograph::VERSION
   gem.authors       = ["William Myers"]
   gem.email         = ["griffin.myers@gmail.com"]
   gem.description   = %q{A boring utility gem to build my journal website.}
