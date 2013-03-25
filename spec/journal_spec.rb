@@ -28,7 +28,6 @@ module Content
         html.should == "<article><div class='date'>3 April 2013</div><div class='entry'><p><em>what up what up</em> yall </p></div></article><article><div class='date'>4 April 2013</div><div class='entry'><p>fuck <span class='textsc'>tha haters</span></p></div></article>"
       end
 
-
     end
 
     describe "#JournalContainer" do
