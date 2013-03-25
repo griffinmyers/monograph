@@ -2,10 +2,10 @@ require 'spec_helper'
 
 module Latex
 
-  describe MonographParser do
+  describe LatexParser do
 
     before do
-      @parser = MonographParser.new
+      @parser = LatexParser.new
     end
 
     describe "#Parser" do

@@ -3,7 +3,7 @@
 
 require 'monograph/latex_nodes'
 
-module Content
+module Latex
   include Treetop::Runtime
 
   def root
@@ -1431,6 +1431,6 @@ module Content
 
 end
 
-class ContentParser < Treetop::Runtime::CompiledParser
-  include Content
+class LatexParser < Treetop::Runtime::CompiledParser
+  include Latex
 end

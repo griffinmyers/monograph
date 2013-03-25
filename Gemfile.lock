@@ -8,7 +8,7 @@ GIT
 PATH
   remote: .
   specs:
-    journal (0.0.1)
+    monograph (0.0.1)
       hemingway
       treetop
 
@@ -34,5 +34,5 @@ PLATFORMS
 
 DEPENDENCIES
   hemingway!
-  journal!
+  monograph!
   rspec
