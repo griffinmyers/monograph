@@ -9,6 +9,7 @@ PATH
   remote: .
   specs:
     journal (0.0.1)
+      hemingway
       treetop
 
 GEM
