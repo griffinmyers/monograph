@@ -1,4 +1,4 @@
-# journal
+# monograph
 
 This is a little web site generator, just for me, so I can publish journal
 entries, if I want.

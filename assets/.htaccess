@@ -1,0 +1,4 @@
+AuthUserFile /path/to/.htpasswd
+AuthType Basic
+AuthName "Mega Journal"
+Require <%= username %>

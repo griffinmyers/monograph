@@ -1,4 +1,4 @@
-require 'journal/content_nodes'
+require 'monograph/latex_nodes'
 
 grammar Content
 

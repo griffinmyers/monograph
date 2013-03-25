@@ -1,0 +1,3 @@
+body {
+	background: rgb(<%= Time.new.month * 255/12 %>, <%= (Time.new.day / 7 * 255 / 4).floor %>, <%= (Time.new.day % 7) * 255/7 %>);;
+}

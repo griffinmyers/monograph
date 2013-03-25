@@ -1,11 +1,11 @@
 require 'hemingway'
-require 'journal/journal_container'
+require 'monograph/monograph_container'
 
-module Content
+module Latex
 
   module DocumentNode
     def container
-      container = JournalCountainer.new
+      container = MonographCountainer.new
       elements.each do |e|
         e.contribute!(container)
       end

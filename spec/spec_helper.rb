@@ -1,1 +1,1 @@
-require "journal"
+require "monograph"

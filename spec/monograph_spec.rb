@@ -1,11 +1,11 @@
 require 'spec_helper'
 
-module Content
+module Latex
 
-  describe ContentParser do
+  describe MonographParser do
 
     before do
-      @parser = ContentParser.new
+      @parser = MonographParser.new
     end
 
     describe "#Parser" do
