@@ -1,8 +1,11 @@
 # journal
 
-This is a little web app, just for me, so I can publish journal entires, if I want.
+This is a little web site generator, just for me, so I can publish journal
+entries, if I want.
 
-It uses some some Latex parsers I wrote to make things look nice.
+It uses [hemingway](https://github.com/griffinmyers/hemingway) to parse individual
+journal entries and a hacky treetop parser I rigged together just to parse my
+journal structure.
 
 # generally, how it works.
 
@@ -15,7 +18,7 @@ static files, ideally.
 
 Because there are only a handful of people who will want access to this, I could
 just generate an index page of the journal for each person and put it in
-its own directory with a `.htaccess` file to permission.
+its own directory with a `.htaccess` file to permission them.
 
 # syntax
 I put my authentication in latex comments inline with the journal.

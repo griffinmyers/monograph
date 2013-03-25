@@ -1,3 +1,6 @@
+require 'fileutils'
+require 'erb'
+
 module Journal
 
 	class InvalidUserError < StandardError; end;
@@ -32,9 +35,36 @@ module Journal
 		def to_h
 			Hash.new.tap do |h|
 				@whitelist.merge(@users).each do |k, j|
-					h[k] = j.html
+					h[k] = j.posts_ascending
 				end
 			end
+		end
+
+		def build_site
+			FileUtils.rm_rf("site")
+			Dir.mkdir("site")
+			Dir.chdir("site")
+
+			@whitelist.merge(@users).each do |k, j|
+				Dir.mkdir(k)
+				Dir.chdir(k)
+
+				File.open("index.html", 'w+') do |f|
+					rhtml = ERB.new(template)
+					f.write(rhtml.run(j.get_binding))
+				end
+
+				Dir.chdir("..")
+			end
+		end
+
+		private
+
+		def template
+			file = File.open("#{File.dirname(__FILE__)}/../assets/template.html", "rb")
+			contents = file.read
+			file.close
+			contents
 		end
 
 	end
@@ -54,8 +84,16 @@ module Journal
 			@html.push(html)
 		end
 
-		def html
+		def posts_ascending
 			@html.join
+		end
+
+		def posts_descending
+			@html.reverse.join
+		end
+
+		def get_binding
+			binding
 		end
 
 	end

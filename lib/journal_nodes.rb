@@ -59,7 +59,7 @@ module Journal
 
     def html
       date_tag = Hemingway::Build.tag("div", date.html, :class => "date")
-      Hemingway::Build.tag("div", date_tag + entry.html, :class => "section")
+      Hemingway::Build.tag("article", date_tag + entry.html)
     end
   end
 
