@@ -3,7 +3,7 @@ require 'monograph/latex_nodes'
 grammar Latex
 
   rule document
-    ( whitelist / register / part / chapter / section / figure / whitespace )+ <DocumentNode>
+    ( whitelist / register / comment / part / chapter / section / figure / whitespace )+ <DocumentNode>
   end
 
   rule whitelist
@@ -14,8 +14,12 @@ grammar Latex
     "%" spaces "register:" spaces username spaces password  <RegisterNode>
   end
 
+  rule comment
+    "%" (!"\n" . )+ <CommentNode>
+  end
+
   rule figure
-    "\\begin{figure}" ( !"{" . )+ "{" path "}" whitespace "\\caption{" caption "}" ( !"\\end" . )+ "\\end{figure}" <FigureNode>
+    "\\begin{figure}" whitespace show:show? ( !"{" . )+ "{" path "}" whitespace "\\caption{" caption "}" ( !"\\end" . )+ "\\end{figure}" <FigureNode>
   end
 
   rule caption

@@ -1,5 +1,6 @@
 require 'hemingway'
 require 'monograph/monograph_container'
+require 'pry'
 
 module Latex
 
@@ -36,14 +37,20 @@ module Latex
 
   end
 
+  module CommentNode
+    def contribute!(container)
+    end
+  end
+
   module FigureNode
     def contribute!(container)
+      container.chomp!(html, show.respond_to?(:users) ? show.users : [])
     end
 
     def html
       image_html = Hemingway::Build.tag("img", nil, :close_tag => false, :src => "/assets/#{path.text_value}")
       caption_html = Hemingway::Build.tag("figcaption", caption.text_value)
-      Hemingway::Build.tag("figure", )
+      Hemingway::Build.tag("figure", image_html + caption_html)
     end
 
   end
@@ -91,7 +98,16 @@ module Latex
 
   module EntryNode
     def html
-      Hemingway::Parser.new.parse(text_value).html
+      begin
+        @parser = Hemingway::Parser.new
+        @parser.parse(text_value).html
+      rescue => e
+        binding.pry
+        puts "Bummer: #{e}."
+        puts @parser.failure_reason
+        puts text_value
+        puts "----------"
+      end
     end
   end
 

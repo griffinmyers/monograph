@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/griffinmyers/hemingway.git
-  revision: ce3ed8a4855ef08ad194c349af53112b078560cd
+  revision: 5e4e81d977d2564f229a1f982793739f527cbebb
   specs:
     hemingway (0.0.2)
       treetop
