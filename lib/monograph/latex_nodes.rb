@@ -36,6 +36,18 @@ module Latex
 
   end
 
+  module FigureNode
+    def contribute!(container)
+    end
+
+    def html
+      image_html = Hemingway::Build.tag("img", nil, :close_tag => false, :src => "/assets/#{path.text_value}")
+      caption_html = Hemingway::Build.tag("figcaption", caption.text_value)
+      Hemingway::Build.tag("figure", )
+    end
+
+  end
+
   module PartNode
     def contribute!(container)
     end
