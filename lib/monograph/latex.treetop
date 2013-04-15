@@ -19,7 +19,7 @@ grammar Latex
   end
 
   rule figure
-    "\\begin{figure}" whitespace show:show? ( !"{" . )+ "{" path "}" whitespace "\\caption{" caption "}" ( !"\\end" . )+ "\\end{figure}" <FigureNode>
+    "\\begin{figure}" whitespace? show:show? ( !"{" . )+ "{" path "}" whitespace? "\\caption{" caption "}" ( !"\\end" . )+ "\\end{figure}" <FigureNode>
   end
 
   rule caption
@@ -58,11 +58,27 @@ grammar Latex
   end
 
   rule entry
-    ( !section_start . )+ <EntryNode>
+    ( !non_entry ( "\\%" / . ) )+ <EntryNode>
+  end
+
+  rule non_entry
+    section_start / chapter_start / part_start / ( !"\\%" "%" ) / figure_start
   end
 
   rule section_start
     "\\section{"
+  end
+
+  rule chapter_start
+    "\\chapter{"
+  end
+
+  rule part_start
+    "\\part{"
+  end
+
+  rule figure_start
+    "\\begin{figure}"
   end
 
   rule date

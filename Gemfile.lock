@@ -1,21 +1,15 @@
-GIT
-  remote: git://github.com/griffinmyers/hemingway.git
-  revision: 5e4e81d977d2564f229a1f982793739f527cbebb
-  specs:
-    hemingway (0.0.2)
-      treetop
-
 PATH
   remote: .
   specs:
     monograph (0.0.1)
-      hemingway
       treetop
 
 GEM
   remote: https://rubygems.org/
   specs:
-    diff-lcs (1.2.1)
+    diff-lcs (1.2.3)
+    hemingway (0.0.3)
+      treetop
     polyglot (0.3.3)
     rspec (2.13.0)
       rspec-core (~> 2.13.0)
@@ -24,7 +18,7 @@ GEM
     rspec-core (2.13.1)
     rspec-expectations (2.13.0)
       diff-lcs (>= 1.1.3, < 2.0)
-    rspec-mocks (2.13.0)
+    rspec-mocks (2.13.1)
     treetop (1.4.12)
       polyglot
       polyglot (>= 0.3.1)
@@ -33,6 +27,6 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  hemingway!
+  hemingway
   monograph!
   rspec

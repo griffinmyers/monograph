@@ -350,20 +350,12 @@ module Latex
   end
 
   module Figure2
-    def whitespace1
-      elements[1]
-    end
-
     def show
       elements[2]
     end
 
     def path
       elements[5]
-    end
-
-    def whitespace2
-      elements[7]
     end
 
     def caption
@@ -393,168 +385,178 @@ module Latex
     end
     s0 << r1
     if r1
-      r2 = _nt_whitespace
+      r3 = _nt_whitespace
+      if r3
+        r2 = r3
+      else
+        r2 = instantiate_node(SyntaxNode,input, index...index)
+      end
       s0 << r2
       if r2
-        r4 = _nt_show
-        if r4
-          r3 = r4
+        r5 = _nt_show
+        if r5
+          r4 = r5
         else
-          r3 = instantiate_node(SyntaxNode,input, index...index)
+          r4 = instantiate_node(SyntaxNode,input, index...index)
         end
-        s0 << r3
-        if r3
-          s5, i5 = [], index
+        s0 << r4
+        if r4
+          s6, i6 = [], index
           loop do
-            i6, s6 = index, []
-            i7 = index
+            i7, s7 = index, []
+            i8 = index
             if has_terminal?("{", false, index)
-              r8 = instantiate_node(SyntaxNode,input, index...(index + 1))
+              r9 = instantiate_node(SyntaxNode,input, index...(index + 1))
               @index += 1
             else
               terminal_parse_failure("{")
+              r9 = nil
+            end
+            if r9
               r8 = nil
-            end
-            if r8
-              r7 = nil
             else
-              @index = i7
-              r7 = instantiate_node(SyntaxNode,input, index...index)
+              @index = i8
+              r8 = instantiate_node(SyntaxNode,input, index...index)
             end
-            s6 << r7
-            if r7
+            s7 << r8
+            if r8
               if index < input_length
-                r9 = instantiate_node(SyntaxNode,input, index...(index + 1))
+                r10 = instantiate_node(SyntaxNode,input, index...(index + 1))
                 @index += 1
               else
                 terminal_parse_failure("any character")
-                r9 = nil
+                r10 = nil
               end
-              s6 << r9
+              s7 << r10
             end
-            if s6.last
-              r6 = instantiate_node(SyntaxNode,input, i6...index, s6)
-              r6.extend(Figure0)
+            if s7.last
+              r7 = instantiate_node(SyntaxNode,input, i7...index, s7)
+              r7.extend(Figure0)
             else
-              @index = i6
-              r6 = nil
+              @index = i7
+              r7 = nil
             end
-            if r6
-              s5 << r6
+            if r7
+              s6 << r7
             else
               break
             end
           end
-          if s5.empty?
-            @index = i5
-            r5 = nil
+          if s6.empty?
+            @index = i6
+            r6 = nil
           else
-            r5 = instantiate_node(SyntaxNode,input, i5...index, s5)
+            r6 = instantiate_node(SyntaxNode,input, i6...index, s6)
           end
-          s0 << r5
-          if r5
+          s0 << r6
+          if r6
             if has_terminal?("{", false, index)
-              r10 = instantiate_node(SyntaxNode,input, index...(index + 1))
+              r11 = instantiate_node(SyntaxNode,input, index...(index + 1))
               @index += 1
             else
               terminal_parse_failure("{")
-              r10 = nil
+              r11 = nil
             end
-            s0 << r10
-            if r10
-              r11 = _nt_path
-              s0 << r11
-              if r11
+            s0 << r11
+            if r11
+              r12 = _nt_path
+              s0 << r12
+              if r12
                 if has_terminal?("}", false, index)
-                  r12 = instantiate_node(SyntaxNode,input, index...(index + 1))
+                  r13 = instantiate_node(SyntaxNode,input, index...(index + 1))
                   @index += 1
                 else
                   terminal_parse_failure("}")
-                  r12 = nil
+                  r13 = nil
                 end
-                s0 << r12
-                if r12
-                  r13 = _nt_whitespace
-                  s0 << r13
-                  if r13
+                s0 << r13
+                if r13
+                  r15 = _nt_whitespace
+                  if r15
+                    r14 = r15
+                  else
+                    r14 = instantiate_node(SyntaxNode,input, index...index)
+                  end
+                  s0 << r14
+                  if r14
                     if has_terminal?("\\caption{", false, index)
-                      r14 = instantiate_node(SyntaxNode,input, index...(index + 9))
+                      r16 = instantiate_node(SyntaxNode,input, index...(index + 9))
                       @index += 9
                     else
                       terminal_parse_failure("\\caption{")
-                      r14 = nil
+                      r16 = nil
                     end
-                    s0 << r14
-                    if r14
-                      r15 = _nt_caption
-                      s0 << r15
-                      if r15
+                    s0 << r16
+                    if r16
+                      r17 = _nt_caption
+                      s0 << r17
+                      if r17
                         if has_terminal?("}", false, index)
-                          r16 = instantiate_node(SyntaxNode,input, index...(index + 1))
+                          r18 = instantiate_node(SyntaxNode,input, index...(index + 1))
                           @index += 1
                         else
                           terminal_parse_failure("}")
-                          r16 = nil
+                          r18 = nil
                         end
-                        s0 << r16
-                        if r16
-                          s17, i17 = [], index
+                        s0 << r18
+                        if r18
+                          s19, i19 = [], index
                           loop do
-                            i18, s18 = index, []
-                            i19 = index
+                            i20, s20 = index, []
+                            i21 = index
                             if has_terminal?("\\end", false, index)
-                              r20 = instantiate_node(SyntaxNode,input, index...(index + 4))
+                              r22 = instantiate_node(SyntaxNode,input, index...(index + 4))
                               @index += 4
                             else
                               terminal_parse_failure("\\end")
-                              r20 = nil
+                              r22 = nil
                             end
-                            if r20
-                              r19 = nil
+                            if r22
+                              r21 = nil
                             else
-                              @index = i19
-                              r19 = instantiate_node(SyntaxNode,input, index...index)
+                              @index = i21
+                              r21 = instantiate_node(SyntaxNode,input, index...index)
                             end
-                            s18 << r19
-                            if r19
+                            s20 << r21
+                            if r21
                               if index < input_length
-                                r21 = instantiate_node(SyntaxNode,input, index...(index + 1))
+                                r23 = instantiate_node(SyntaxNode,input, index...(index + 1))
                                 @index += 1
                               else
                                 terminal_parse_failure("any character")
-                                r21 = nil
+                                r23 = nil
                               end
-                              s18 << r21
+                              s20 << r23
                             end
-                            if s18.last
-                              r18 = instantiate_node(SyntaxNode,input, i18...index, s18)
-                              r18.extend(Figure1)
+                            if s20.last
+                              r20 = instantiate_node(SyntaxNode,input, i20...index, s20)
+                              r20.extend(Figure1)
                             else
-                              @index = i18
-                              r18 = nil
+                              @index = i20
+                              r20 = nil
                             end
-                            if r18
-                              s17 << r18
+                            if r20
+                              s19 << r20
                             else
                               break
                             end
                           end
-                          if s17.empty?
-                            @index = i17
-                            r17 = nil
+                          if s19.empty?
+                            @index = i19
+                            r19 = nil
                           else
-                            r17 = instantiate_node(SyntaxNode,input, i17...index, s17)
+                            r19 = instantiate_node(SyntaxNode,input, i19...index, s19)
                           end
-                          s0 << r17
-                          if r17
+                          s0 << r19
+                          if r19
                             if has_terminal?("\\end{figure}", false, index)
-                              r22 = instantiate_node(SyntaxNode,input, index...(index + 12))
+                              r24 = instantiate_node(SyntaxNode,input, index...(index + 12))
                               @index += 12
                             else
                               terminal_parse_failure("\\end{figure}")
-                              r22 = nil
+                              r24 = nil
                             end
-                            s0 << r22
+                            s0 << r24
                           end
                         end
                       end
@@ -1303,7 +1305,7 @@ module Latex
     loop do
       i1, s1 = index, []
       i2 = index
-      r3 = _nt_section_start
+      r3 = _nt_non_entry
       if r3
         r2 = nil
       else
@@ -1312,12 +1314,30 @@ module Latex
       end
       s1 << r2
       if r2
-        if index < input_length
-          r4 = instantiate_node(SyntaxNode,input, index...(index + 1))
-          @index += 1
+        i4 = index
+        if has_terminal?("\\%", false, index)
+          r5 = instantiate_node(SyntaxNode,input, index...(index + 2))
+          @index += 2
         else
-          terminal_parse_failure("any character")
-          r4 = nil
+          terminal_parse_failure("\\%")
+          r5 = nil
+        end
+        if r5
+          r4 = r5
+        else
+          if index < input_length
+            r6 = instantiate_node(SyntaxNode,input, index...(index + 1))
+            @index += 1
+          else
+            terminal_parse_failure("any character")
+            r6 = nil
+          end
+          if r6
+            r4 = r6
+          else
+            @index = i4
+            r4 = nil
+          end
         end
         s1 << r4
       end
@@ -1346,6 +1366,86 @@ module Latex
     r0
   end
 
+  module NonEntry0
+  end
+
+  def _nt_non_entry
+    start_index = index
+    if node_cache[:non_entry].has_key?(index)
+      cached = node_cache[:non_entry][index]
+      if cached
+        cached = SyntaxNode.new(input, index...(index + 1)) if cached == true
+        @index = cached.interval.end
+      end
+      return cached
+    end
+
+    i0 = index
+    r1 = _nt_section_start
+    if r1
+      r0 = r1
+    else
+      r2 = _nt_chapter_start
+      if r2
+        r0 = r2
+      else
+        r3 = _nt_part_start
+        if r3
+          r0 = r3
+        else
+          i4, s4 = index, []
+          i5 = index
+          if has_terminal?("\\%", false, index)
+            r6 = instantiate_node(SyntaxNode,input, index...(index + 2))
+            @index += 2
+          else
+            terminal_parse_failure("\\%")
+            r6 = nil
+          end
+          if r6
+            r5 = nil
+          else
+            @index = i5
+            r5 = instantiate_node(SyntaxNode,input, index...index)
+          end
+          s4 << r5
+          if r5
+            if has_terminal?("%", false, index)
+              r7 = instantiate_node(SyntaxNode,input, index...(index + 1))
+              @index += 1
+            else
+              terminal_parse_failure("%")
+              r7 = nil
+            end
+            s4 << r7
+          end
+          if s4.last
+            r4 = instantiate_node(SyntaxNode,input, i4...index, s4)
+            r4.extend(NonEntry0)
+          else
+            @index = i4
+            r4 = nil
+          end
+          if r4
+            r0 = r4
+          else
+            r8 = _nt_figure_start
+            if r8
+              r0 = r8
+            else
+              @index = i0
+              r0 = nil
+            end
+          end
+        end
+      end
+    end
+
+    node_cache[:non_entry][start_index] = r0
+
+    r0
+  end
+
   def _nt_section_start
     start_index = index
     if node_cache[:section_start].has_key?(index)
@@ -1366,6 +1466,78 @@ module Latex
     end
 
     node_cache[:section_start][start_index] = r0
+
+    r0
+  end
+
+  def _nt_chapter_start
+    start_index = index
+    if node_cache[:chapter_start].has_key?(index)
+      cached = node_cache[:chapter_start][index]
+      if cached
+        cached = SyntaxNode.new(input, index...(index + 1)) if cached == true
+        @index = cached.interval.end
+      end
+      return cached
+    end
+
+    if has_terminal?("\\chapter{", false, index)
+      r0 = instantiate_node(SyntaxNode,input, index...(index + 9))
+      @index += 9
+    else
+      terminal_parse_failure("\\chapter{")
+      r0 = nil
+    end
+
+    node_cache[:chapter_start][start_index] = r0
+
+    r0
+  end
+
+  def _nt_part_start
+    start_index = index
+    if node_cache[:part_start].has_key?(index)
+      cached = node_cache[:part_start][index]
+      if cached
+        cached = SyntaxNode.new(input, index...(index + 1)) if cached == true
+        @index = cached.interval.end
+      end
+      return cached
+    end
+
+    if has_terminal?("\\part{", false, index)
+      r0 = instantiate_node(SyntaxNode,input, index...(index + 6))
+      @index += 6
+    else
+      terminal_parse_failure("\\part{")
+      r0 = nil
+    end
+
+    node_cache[:part_start][start_index] = r0
+
+    r0
+  end
+
+  def _nt_figure_start
+    start_index = index
+    if node_cache[:figure_start].has_key?(index)
+      cached = node_cache[:figure_start][index]
+      if cached
+        cached = SyntaxNode.new(input, index...(index + 1)) if cached == true
+        @index = cached.interval.end
+      end
+      return cached
+    end
+
+    if has_terminal?("\\begin{figure}", false, index)
+      r0 = instantiate_node(SyntaxNode,input, index...(index + 14))
+      @index += 14
+    else
+      terminal_parse_failure("\\begin{figure}")
+      r0 = nil
+    end
+
+    node_cache[:figure_start][start_index] = r0
 
     r0
   end
