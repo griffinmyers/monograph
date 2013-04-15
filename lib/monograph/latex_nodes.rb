@@ -1,6 +1,5 @@
 require 'hemingway'
 require 'monograph/monograph_container'
-require 'pry'
 
 module Latex
 
@@ -102,7 +101,6 @@ module Latex
         @parser = Hemingway::Parser.new
         @parser.parse(text_value).html
       rescue => e
-        binding.pry
         puts "Bummer: #{e}."
         puts @parser.failure_reason
         puts text_value
