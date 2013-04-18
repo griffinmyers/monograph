@@ -86,8 +86,21 @@ module Latex
 				end
 
 				Dir.chdir("..")
+
+				Dir.mkdir("js")
+				Dir.chdir("js")
+
+				File.open("application.js", 'w') do |f|
+					f.write(template("../../assets/js/application.js"))
+				end
+
+				File.open("jquery-1.9.1.js", 'w') do |f|
+					f.write(template("../../assets/js/jquery-1.9.1.js"))
+				end
+
 				Dir.chdir("..")
 
+				Dir.chdir("..")
 
 				Dir.chdir("..")
 			end
