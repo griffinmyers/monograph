@@ -1,4 +1,11 @@
-AuthUserFile /path/to/.htpasswd
+<Files .htaccess>
+order allow,deny
+deny from all
+</Files>
+
+Options All -Indexes
+
+AuthUserFile /f5/journal/public/site/.htpasswd
 AuthType Basic
 AuthName "Mega Journal"
-Require <%= username %>
+Require user <%= username %>

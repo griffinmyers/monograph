@@ -47,7 +47,7 @@ module Latex
     end
 
     def html
-      image_html = Hemingway::Build.tag("img", nil, :close_tag => false, :src => "/assets/#{path.text_value}")
+      image_html = Hemingway::Build.tag("img", nil, :close_tag => false, :src => "/#{path.text_value}")
       caption_html = Hemingway::Build.tag("figcaption", caption.text_value)
       Hemingway::Build.tag("figure", image_html + caption_html)
     end

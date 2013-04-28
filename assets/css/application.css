@@ -30,39 +30,16 @@ article {
   left: 0;
   top: 0;
   bottom: 0;
-  width: 25px;
+  width: 10px;
   background-color: rgb(<%= Time.new.month * 255/12 %>, <%= (Time.new.day / 7 * 255 / 4).floor %>, <%= (Time.new.day % 7) * 255/7 %>);
-  outline: 2px solid rgb(<%= (Time.new.month * 255/12 * 1.2).floor %>, <%= ((Time.new.day / 7 * 255 / 4).floor * 1.2).floor %>, <%= ((Time.new.day % 7) * 255/7 * 1.2).floor %>);
+  outline: 10px solid rgb(<%= (Time.new.month * 255/12 * 1.2).floor %>, <%= ((Time.new.day / 7 * 255 / 4).floor * 1.2).floor %>, <%= ((Time.new.day % 7) * 255/7 * 1.2).floor %>);
   z-index: 100;
-  text-align: justify;
-  line-height: 20px;
-}
-
-#navbar:after {
-  content: "";
-  width: 100%;
-  display: inline-block;
-}
-
-.year {
-  text-align: center;
-  width: 20px;
-  display: inline-block;
-  color: rgb(85, 127, 109);
-  font-family: Monaco, monospace;
-  font-size: 12px;
-  background-color: rgb(110, 160, 137);
-  border: 2px solid rgb(102, 152, 130);
-}
-
-.bookend {
-  display: inline-block;
 }
 
 @media (max-width: 900px) {
   #navbar {
     left: 0;
-    height: 25px;
+    height: 10px;
     width: 100%;
   }
 }
@@ -132,4 +109,16 @@ a {
 
 .textsc {
   font-variant:small-caps;
+}
+
+figcaption {
+  text-align: center;
+  font-family: 'Noto Serif', serif;
+  font-size: 16px;
+  margin: 20px 0 60px 0;
+  color: #333332;
+}
+
+figure img {
+  width: 100%;
 }

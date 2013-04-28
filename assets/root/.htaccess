@@ -1,0 +1,10 @@
+<Files .htaccess>
+order allow,deny
+deny from all
+</Files>
+
+Options All -Indexes
+
+RewriteEngine On
+RewriteCond %{REQUEST_URI} !^/site
+RewriteRule ^(.*)$ /site/$1 [L]

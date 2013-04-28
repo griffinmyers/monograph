@@ -48,7 +48,7 @@ module Latex
 
       write_monograph
       write_htpasswd
-
+      write_htaccess
     end
 
     private
@@ -112,6 +112,12 @@ module Latex
         htpasswd.set_passwd('Mega Journal', j.username, j.password)
       end
       htpasswd.flush
+    end
+
+    def write_htaccess
+      File.open(".htaccess", 'w') do |f|
+        f.write(template("../../assets/root/.htaccess"))
+      end
     end
 
   end
