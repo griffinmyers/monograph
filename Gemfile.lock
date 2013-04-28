@@ -8,7 +8,7 @@ GEM
   remote: https://rubygems.org/
   specs:
     diff-lcs (1.2.3)
-    hemingway (0.0.3)
+    hemingway (1.0.0)
       treetop
     polyglot (0.3.3)
     rspec (2.13.0)
@@ -27,6 +27,6 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  hemingway
+  hemingway (= 1.0.0)
   monograph!
   rspec
