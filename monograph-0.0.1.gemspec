@@ -13,7 +13,7 @@ Gem::Specification.new do |gem|
 
   gem.add_development_dependency "rspec"
   gem.add_runtime_dependency "treetop"
-  #gem.add_runtime_dependency "hemingway"
+  gem.add_runtime_dependency "hemingway", '1.0.0'
 
   gem.files         = `git ls-files`.split($/)
   gem.executables   = gem.files.grep(%r{^bin/}).map{ |f| File.basename(f) }

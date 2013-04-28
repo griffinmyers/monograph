@@ -2,6 +2,7 @@ PATH
   remote: .
   specs:
     monograph (0.0.1)
+      hemingway (= 1.0.0)
       treetop
 
 GEM
@@ -27,6 +28,5 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  hemingway (= 1.0.0)
   monograph!
   rspec
