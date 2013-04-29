@@ -1,3 +1,7 @@
+<% r = (Time.new.month * 255/12).floor %>
+<% g = (Time.new.day / 7 * 255 / 4).floor %>
+<% b = ((Time.new.day % 7) * 255 / 7).floor %>
+
 body {
   background: white;
 }
@@ -31,8 +35,8 @@ article {
   top: 0;
   bottom: 0;
   width: 10px;
-  background-color: rgb(<%= Time.new.month * 255/12 %>, <%= (Time.new.day / 7 * 255 / 4).floor %>, <%= (Time.new.day % 7) * 255/7 %>);
-  outline: 10px solid rgb(<%= (Time.new.month * 255/12 * 1.2).floor %>, <%= ((Time.new.day / 7 * 255 / 4).floor * 1.2).floor %>, <%= ((Time.new.day % 7) * 255/7 * 1.2).floor %>);
+  background-color: rgb(<%= (r * 0.8).floor %>, <%= (g * 0.8).floor %>, <%= (b * 0.8).floor %>);
+  outline: 10px solid rgb(<%= r %>, <%= g %>, <%= b %>);
   z-index: 100;
 }
 
