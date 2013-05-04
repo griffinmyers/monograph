@@ -129,3 +129,7 @@ figure img {
   border-radius: 100%;
   border: 1px solid black;
 }
+
+li {
+  margin: 10px 0;
+}
