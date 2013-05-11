@@ -1,7 +1,6 @@
 require 'webrick/httpauth'
 require 'fileutils'
 require 'erb'
-require 'pry'
 
 module Latex
 
