@@ -1,6 +1,7 @@
 require 'webrick/httpauth'
 require 'fileutils'
 require 'erb'
+require 'pry'
 
 module Latex
 
@@ -54,10 +55,14 @@ module Latex
     private
 
     def template(path)
-      file = File.open(File.expand_path(path, File.dirname(__FILE__)), "rb")
+      file = File.open(full_path(path), "rb")
       contents = file.read
       file.close
       contents
+    end
+
+    def full_path(rel_path)
+      File.expand_path(rel_path, File.dirname(__FILE__))
     end
 
     def write_monograph
@@ -66,6 +71,40 @@ module Latex
         rhtml = ERB.new(template("../../assets/index.html"))
         f.write(rhtml.result)
       end
+
+      Dir.mkdir("assets")
+      Dir.chdir("assets")
+      Dir.mkdir("css")
+      Dir.chdir("css")
+
+      File.open("application.css", 'w') do |f|
+        rcss = ERB.new(template("../../assets/css/application.css"))
+        f.write(rcss.result)
+      end
+
+      File.open("index.css", 'w') do |f|
+        rcss = ERB.new(template("../../assets/css/index.css"))
+        f.write(rcss.result)
+      end
+
+      Dir.chdir("..")
+
+      Dir.mkdir("js")
+      Dir.chdir("js")
+
+      File.open("application.js", 'w') do |f|
+        f.write(template("../../assets/js/application.js"))
+      end
+
+      File.open("jquery-1.9.1.js", 'w') do |f|
+        f.write(template("../../assets/js/jquery-1.9.1.js"))
+      end
+
+      Dir.chdir("..")
+
+      FileUtils.cp_r(full_path('../../assets/img'), FileUtils::pwd)
+
+      Dir.chdir("..")
 
       @whitelist.merge(@users).each do |k, j|
         Dir.mkdir(k.to_s)
@@ -80,33 +119,6 @@ module Latex
           rhtml = ERB.new(template("../../assets/.htaccess"))
           f.write(rhtml.result(j.get_binding))
         end
-
-        Dir.mkdir("assets")
-        Dir.chdir("assets")
-        Dir.mkdir("css")
-        Dir.chdir("css")
-
-        File.open("application.css", 'w') do |f|
-          rcss = ERB.new(template("../../assets/css/application.css"))
-          f.write(rcss.result(j.get_binding))
-        end
-
-        Dir.chdir("..")
-
-        Dir.mkdir("js")
-        Dir.chdir("js")
-
-        File.open("application.js", 'w') do |f|
-          f.write(template("../../assets/js/application.js"))
-        end
-
-        File.open("jquery-1.9.1.js", 'w') do |f|
-          f.write(template("../../assets/js/jquery-1.9.1.js"))
-        end
-
-        Dir.chdir("..")
-
-        Dir.chdir("..")
 
         Dir.chdir("..")
       end
