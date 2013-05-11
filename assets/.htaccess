@@ -5,7 +5,7 @@ deny from all
 
 Options All -Indexes
 
-AuthUserFile /f5/journal/public/site/.htpasswd
+AuthUserFile /f5/journal/public/.htpasswd
 AuthType Basic
 AuthName "Mega Journal"
 Require user <%= username %>

@@ -61,6 +61,12 @@ module Latex
     end
 
     def write_monograph
+
+      File.open("index.html", 'w') do |f|
+        rhtml = ERB.new(template("../../assets/index.html"))
+        f.write(rhtml.result(j.get_binding))
+      end
+
       @whitelist.merge(@users).each do |k, j|
         Dir.mkdir(k.to_s)
         Dir.chdir(k.to_s)
