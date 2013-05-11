@@ -1,0 +1,13 @@
+body {
+  background: url('../img/gray_jean.png') repeat top left;
+}
+
+h1 {
+  font-family: 'Libre Baskerville', serif;
+  font-size: 60px;
+  font-weight: 700;
+  color: #333332;
+  margin: 200px auto;
+  width: 500px;
+  text-align: center;
+}
