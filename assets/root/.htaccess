@@ -4,3 +4,8 @@ deny from all
 </Files>
 
 Options All -Indexes
+
+ErrorDocument 401 /index.html
+ErrorDocument 403 /index.html
+ErrorDocument 404 /index.html
+ErrorDocument 500 /index.html
