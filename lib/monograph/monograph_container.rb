@@ -64,7 +64,7 @@ module Latex
 
       File.open("index.html", 'w') do |f|
         rhtml = ERB.new(template("../../assets/index.html"))
-        f.write(rhtml.result(j.get_binding))
+        f.write(rhtml.result)
       end
 
       @whitelist.merge(@users).each do |k, j|
