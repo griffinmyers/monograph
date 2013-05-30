@@ -32,21 +32,23 @@ article {
 
 #navbar {
   position: fixed;
-  left: 0;
-  top: 0;
-  bottom: 0;
-  width: 10px;
-  background-color: rgb(<%= (r * 0.8).floor %>, <%= (g * 0.8).floor %>, <%= (b * 0.8).floor %>);
-  outline: 10px solid rgb(<%= r %>, <%= g %>, <%= b %>);
+  left: 40px;
+  top: 10px;
+  width: 90px;
+  height: 30px;
+  background-color: rgb(<%= r %>, <%= g %>, <%= b %>);
   z-index: 100;
 }
 
-@media (max-width: 900px) {
-  #navbar {
-    left: 0;
-    height: 10px;
-    width: 100%;
-  }
+#navbar:after{
+  content: "M";
+  display: block;
+  font-family: 'Libre Baskerville', serif;
+  font-size: 18px;
+  line-height: 30px;
+  color: white;
+  text-align: left;
+  padding-left: 5px;
 }
 
 .footnote {
