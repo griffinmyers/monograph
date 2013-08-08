@@ -81,8 +81,8 @@ module Latex
     end
 
     def html
-      date_tag = Hemingway::Build.tag("div", date.html, :class => "date")
-      Hemingway::Build.tag("article", date_tag + entry.html)
+      heading_tag = Hemingway::Build.tag("h1", heading.html)
+      Hemingway::Build.tag("article", heading_tag + entry.html)
     end
   end
 
@@ -114,9 +114,21 @@ module Latex
     end
   end
 
+  module HeadingNode
+    def html
+      respond_to?(:date) ? date.html : text_value
+    end
+  end
+
   module DateNode
     def html
       "#{day.html} #{month.html} #{year.html}"
+    end
+  end
+
+  module TagTextNode
+    def html
+      text_value
     end
   end
 

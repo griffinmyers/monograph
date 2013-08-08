@@ -1163,7 +1163,7 @@ module Latex
       elements[0]
     end
 
-    def date
+    def heading
       elements[1]
     end
 
@@ -1195,7 +1195,7 @@ module Latex
     r1 = _nt_section_start
     s0 << r1
     if r1
-      r2 = _nt_date
+      r2 = _nt_heading
       s0 << r2
       if r2
         if has_terminal?("}", false, index)
@@ -1758,6 +1758,99 @@ module Latex
     end
 
     node_cache[:date][start_index] = r0
+
+    r0
+  end
+
+  module TagText0
+  end
+
+  def _nt_tag_text
+    start_index = index
+    if node_cache[:tag_text].has_key?(index)
+      cached = node_cache[:tag_text][index]
+      if cached
+        cached = SyntaxNode.new(input, index...(index + 1)) if cached == true
+        @index = cached.interval.end
+      end
+      return cached
+    end
+
+    s0, i0 = [], index
+    loop do
+      i1, s1 = index, []
+      i2 = index
+      if has_terminal?("}", false, index)
+        r3 = instantiate_node(SyntaxNode,input, index...(index + 1))
+        @index += 1
+      else
+        terminal_parse_failure("}")
+        r3 = nil
+      end
+      if r3
+        r2 = nil
+      else
+        @index = i2
+        r2 = instantiate_node(SyntaxNode,input, index...index)
+      end
+      s1 << r2
+      if r2
+        if index < input_length
+          r4 = instantiate_node(SyntaxNode,input, index...(index + 1))
+          @index += 1
+        else
+          terminal_parse_failure("any character")
+          r4 = nil
+        end
+        s1 << r4
+      end
+      if s1.last
+        r1 = instantiate_node(SyntaxNode,input, i1...index, s1)
+        r1.extend(TagText0)
+      else
+        @index = i1
+        r1 = nil
+      end
+      if r1
+        s0 << r1
+      else
+        break
+      end
+    end
+    r0 = instantiate_node(TagTextNode,input, i0...index, s0)
+
+    node_cache[:tag_text][start_index] = r0
+
+    r0
+  end
+
+  def _nt_heading
+    start_index = index
+    if node_cache[:heading].has_key?(index)
+      cached = node_cache[:heading][index]
+      if cached
+        cached = SyntaxNode.new(input, index...(index + 1)) if cached == true
+        @index = cached.interval.end
+      end
+      return cached
+    end
+
+    i0 = index
+    r1 = _nt_date
+    if r1
+      r0 = r1
+    else
+      r2 = _nt_tag_text
+      r2.extend(HeadingNode)
+      if r2
+        r0 = r2
+      else
+        @index = i0
+        r0 = nil
+      end
+    end
+
+    node_cache[:heading][start_index] = r0
 
     r0
   end
