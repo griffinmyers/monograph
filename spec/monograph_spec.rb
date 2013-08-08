@@ -80,12 +80,12 @@ module Latex
 
       it 'should allow me a public account' do
         container = @parser.parse("% public: resume \\section{April 3$^{rd}$, 2013} % show: resume \n All About Me \\section{April 4$^{th}$, 2013} Fuck The Dinner Dogs...").container
-        container.to_h.should == { :resume=>"<article><h1>3 April 2013</h1><div class='entry'><p>All About Me </p></div></article>" }
+        container.to_h.should == { :resume => "<article><h1>3 April 2013</h1><div class='entry'><p>All About Me </p></div></article>" }
       end
 
       it 'should allow me to make a heading that isnt a date' do
         container = @parser.parse("% public: resume \\section{Will Myers} % show: resume \n All About Me").container
-        container.to_h.should == { :resume=>"<article><h1>Will Myers</h1><div class='entry'><p>All About Me</p></div></article>" }
+        container.to_h.should == { :resume => "<article><h1>Will Myers</h1><div class='entry'><p>All About Me</p></div></article>" }
       end
 
     end
