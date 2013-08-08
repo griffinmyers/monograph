@@ -118,9 +118,11 @@ module Latex
           f.write(rhtml.result(j.get_binding))
         end
 
-        File.open(".htaccess", 'w') do |f|
-          rhtml = ERB.new(template("../../assets/.htaccess"))
-          f.write(rhtml.result(j.get_binding))
+        if j.is_private?
+          File.open(".htaccess", 'w') do |f|
+            rhtml = ERB.new(template("../../assets/.htaccess"))
+            f.write(rhtml.result(j.get_binding))
+          end
         end
 
         Dir.chdir("..")
@@ -180,6 +182,10 @@ module Latex
 
     def is_public?
       @password ? false : true
+    end
+
+    def is_private?
+      !is_public?
     end
 
   end
