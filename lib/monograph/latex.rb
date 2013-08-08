@@ -32,32 +32,37 @@ module Latex
         if r3
           r1 = r3
         else
-          r4 = _nt_comment
+          r4 = _nt_public
           if r4
             r1 = r4
           else
-            r5 = _nt_part
+            r5 = _nt_comment
             if r5
               r1 = r5
             else
-              r6 = _nt_chapter
+              r6 = _nt_part
               if r6
                 r1 = r6
               else
-                r7 = _nt_section
+                r7 = _nt_chapter
                 if r7
                   r1 = r7
                 else
-                  r8 = _nt_figure
+                  r8 = _nt_section
                   if r8
                     r1 = r8
                   else
-                    r9 = _nt_whitespace
+                    r9 = _nt_figure
                     if r9
                       r1 = r9
                     else
-                      @index = i1
-                      r1 = nil
+                      r10 = _nt_whitespace
+                      if r10
+                        r1 = r10
+                      else
+                        @index = i1
+                        r1 = nil
+                      end
                     end
                   end
                 end
@@ -250,6 +255,75 @@ module Latex
     end
 
     node_cache[:register][start_index] = r0
+
+    r0
+  end
+
+  module Public0
+    def spaces1
+      elements[1]
+    end
+
+    def spaces2
+      elements[3]
+    end
+
+    def username
+      elements[4]
+    end
+  end
+
+  def _nt_public
+    start_index = index
+    if node_cache[:public].has_key?(index)
+      cached = node_cache[:public][index]
+      if cached
+        cached = SyntaxNode.new(input, index...(index + 1)) if cached == true
+        @index = cached.interval.end
+      end
+      return cached
+    end
+
+    i0, s0 = index, []
+    if has_terminal?("%", false, index)
+      r1 = instantiate_node(SyntaxNode,input, index...(index + 1))
+      @index += 1
+    else
+      terminal_parse_failure("%")
+      r1 = nil
+    end
+    s0 << r1
+    if r1
+      r2 = _nt_spaces
+      s0 << r2
+      if r2
+        if has_terminal?("public:", false, index)
+          r3 = instantiate_node(SyntaxNode,input, index...(index + 7))
+          @index += 7
+        else
+          terminal_parse_failure("public:")
+          r3 = nil
+        end
+        s0 << r3
+        if r3
+          r4 = _nt_spaces
+          s0 << r4
+          if r4
+            r5 = _nt_username
+            s0 << r5
+          end
+        end
+      end
+    end
+    if s0.last
+      r0 = instantiate_node(PublicNode,input, i0...index, s0)
+      r0.extend(Public0)
+    else
+      @index = i0
+      r0 = nil
+    end
+
+    node_cache[:public][start_index] = r0
 
     r0
   end

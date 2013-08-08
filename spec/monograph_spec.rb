@@ -78,6 +78,11 @@ module Latex
         expect { @parser.parse("\\section{April 3$^{rd}$, 2013} % show: roymuntz \n Dear Journal... \\section{April 4$^{th}$, 2013} Fuck Munson...").container }.to raise_error(InvalidUserError)
       end
 
+      it 'should allow me a public account' do
+        container = @parser.parse("% public: resume \\section{April 3$^{rd}$, 2013} % show: resume \n All About Me \\section{April 4$^{th}$, 2013} Fuck The Dinner Dogs...").container
+        container.to_h.should == { :resume=>"<article><div class='date'>3 April 2013</div><div class='entry'><p>All About Me </p></div></article>" }
+      end
+
     end
 
   end

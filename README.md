@@ -28,9 +28,12 @@ At the top of the file I'll say something like
 		% register: roymuntz password123
 		% register: griffinmyers qwerty
 		% whitelist: motherbear eastereggs
+		% public: resume
 
 to register a user. If I register someone via the `whitelist` command then
 it will opt them into seeing _every single post_. I must use that cautiously.
+
+The `public` declaration will produce a user that is not required to authenticate.
 
 Then in a post (all my posts use the `\section{}` tag) I can say something like
 

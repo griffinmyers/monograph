@@ -14,7 +14,7 @@ module Latex
     end
 
     # this method adds a user to the whitelist
-    def register!(username, password, whitelist: false)
+    def register!(username, password: nil, whitelist: false)
       if whitelist
         @whitelist[username] = Monograph.new(username, password)
       else
@@ -35,7 +35,7 @@ module Latex
 
     def to_h
       Hash.new.tap do |h|
-        @whitelist.merge(@users).each do |k, j|
+        everyone.each do |k, j|
           h[k] = j.posts_ascending
         end
       end
@@ -52,6 +52,10 @@ module Latex
     end
 
     private
+
+    def everyone
+      @whitelist.merge(@users)
+    end
 
     def template(path)
       file = File.open(full_path(path), "rb")
@@ -105,7 +109,7 @@ module Latex
 
       Dir.chdir("..")
 
-      @whitelist.merge(@users).each do |k, j|
+      everyone.each do |k, j|
         Dir.mkdir(k.to_s)
         Dir.chdir(k.to_s)
 
@@ -125,7 +129,7 @@ module Latex
 
     def write_htpasswd
       htpasswd = WEBrick::HTTPAuth::Htpasswd.new('.htpasswd')
-      @whitelist.merge(@users).each do |k, j|
+      everyone.each do |k, j|
         htpasswd.set_passwd('Mega Journal', j.username, j.password)
       end
       htpasswd.flush
@@ -143,7 +147,7 @@ module Latex
   # This class will create a single site directory
   class Monograph
 
-    def initialize(username, password)
+    def initialize(username, password=nil)
       @username = username
       @password = password
       @html = []
@@ -172,6 +176,10 @@ module Latex
 
     def get_binding
       binding
+    end
+
+    def is_public?
+      @password ? false : true
     end
 
   end

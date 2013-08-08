@@ -19,7 +19,7 @@ module Latex
 
   module WhitelistNode
     def contribute!(container)
-      container.register!(username.text_value.to_sym, password.text_value, whitelist: true)
+      container.register!(username.text_value.to_sym, password: password.text_value, whitelist: true)
     end
 
     def html
@@ -28,12 +28,17 @@ module Latex
 
   module RegisterNode
     def contribute!(container)
-      container.register!(username.text_value.to_sym, password.text_value)
+      container.register!(username.text_value.to_sym, password: password.text_value)
     end
 
     def html
     end
+  end
 
+  module PublicNode
+    def contribute!(container)
+      container.register!(username.text_value.to_sym)
+    end
   end
 
   module CommentNode

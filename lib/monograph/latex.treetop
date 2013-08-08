@@ -3,7 +3,7 @@ require 'monograph/latex_nodes'
 grammar Latex
 
   rule document
-    ( whitelist / register / comment / part / chapter / section / figure / whitespace )+ <DocumentNode>
+    ( whitelist / register / public / comment / part / chapter / section / figure / whitespace )+ <DocumentNode>
   end
 
   rule whitelist
@@ -12,6 +12,10 @@ grammar Latex
 
   rule register
     "%" spaces "register:" spaces username spaces password  <RegisterNode>
+  end
+
+  rule public
+    "%" spaces "public:" spaces username <PublicNode>
   end
 
   rule comment
