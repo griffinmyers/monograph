@@ -6,6 +6,19 @@ body {
   background: white;
 }
 
+a {
+  -webkit-transition: color 0.2s ease-in-out;
+  -moz-transition: color 0.2s ease-in-out;
+  transition: color 0.2s ease-in-out;
+  color: #8F8F8F;
+  font-size: 14px;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #333332;
+}
+
 #content {
   max-width: 640px;
   margin: 0 auto;
@@ -75,16 +88,19 @@ dd {
 }
 
 sup {
+  -webkit-transition: opacity 0.2s ease-in-out;
+  -moz-transition: opacity 0.2s ease-in-out;
+  transition: opacity 0.2s ease-in-out;
   font-size: 12px;
+  color: #8F8F8F;
 }
+
+p sup { opacity: 0.2; }
+p:hover sup { opacity: 1; }
+
 
 .center {
   text-align: center;
-}
-
-a {
-  text-decoration: none;
-  color: #333332;
 }
 
 .neatline {
