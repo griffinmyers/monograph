@@ -106,9 +106,14 @@ module Latex
         @parser = Hemingway::Parser.new
         @parser.parse(text_value).html
       rescue => e
+        start = @parser.failure_reason.index("byte") + 5
+        length = @parser.failure_reason.index(")", start) - start
+        index = @parser.failure_reason[start, length].to_i
+        padding = 60
+
         puts "Bummer: #{e}."
         puts @parser.failure_reason
-        puts text_value
+        puts "Near: #{text_value[index - padding, padding * 2]}"
         puts "----------"
       end
     end
